@@ -12,17 +12,21 @@ motorCenterOfMassLength = 6
 # These will not be constant eventually
 # Orientation about drone facing away from us:
 # Top left motor
-motorOneRotationalVelocity = 1
+motorOneRotationalVelocity = 4
 # Top right motor
-motorTwoRotationalVelocity = 1
+motorTwoRotationalVelocity = 4
 # Bottom left motor
-motorThreeRotationalVelocity = 1
+motorThreeRotationalVelocity = 4
 # Bottom right motor
-motorFourRotationalVelocity = 1
+motorFourRotationalVelocity = 4
 
 initialXVelocity = 0
 initialYVelocity = 0
 initialZVelocity = 0
+
+initialXPosition = 0
+initialYPosition = 0
+initialZPosition = 0
 
 phi = 0 # angular rotation in degrees about ex "roll"
 theta = 0 # angular rotation in degrees about ey "pitch"
@@ -40,7 +44,9 @@ uPhi = (F2+F4)-(F1 + F3)
 uTheta = (F1 + F2)-(F3+F4)
 
 # This will work for a 2d drone for now
-xAccelleration = -u1/droneMass*math.cos(phi)
-yAccelleration = u1/droneMass*math.sin(phi)-gravitationalConstant
+xAccelleration = (-u1/droneMass)*math.sin(phi)
+zAccelleration = (u1/droneMass)*math.cos(phi)-gravitationalConstant
+# Hard set this for now
+yAccelleration = 0
 phiAccelleration = uPhi/momentOfInertia*motorCenterOfMassLength
 thetaAccelleration = uTheta/momentOfInertia*motorCenterOfMassLength
